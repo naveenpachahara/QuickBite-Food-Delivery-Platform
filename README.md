@@ -1,493 +1,296 @@
-# 🍔 Swiggy Clone — Food Delivery Web Application
+<div align="center">
 
-A modern **Swiggy-inspired food delivery web application** built with **React.js**, designed to provide a smooth and interactive experience for discovering restaurants, browsing menus, searching for food, managing a cart, and completing checkout.
+# 🍔 QuickBite: Food Delivery Platform
 
-The project focuses on building a real-world food delivery interface using **reusable React components, Redux state management, dynamic routing, and responsive UI patterns**.
+**A Swiggy-inspired food delivery frontend with live restaurant data, nested menus, veg / non-veg filtering and a Redux-powered cart.**
+
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.x-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-7-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Parcel](https://img.shields.io/badge/Parcel-2-F5B342?style=for-the-badge&logo=parcel&logoColor=black)
+
+[Report Bug](https://github.com/naveenpachahara/QuickBite-Food-Delivery-Platform/issues) · [Request Feature](https://github.com/naveenpachahara/QuickBite-Food-Delivery-Platform/issues)
+
+</div>
 
 ---
 
-## 🚀 Live Project
+## 📖 About
 
-🔗 **GitHub Repository:**
-https://github.com/naveenpachahara/swiggy-clone
+QuickBite is a frontend food delivery application built with **React 19, Redux Toolkit, React Router 7 and Tailwind CSS 4**. It recreates the core ordering journey of a modern food delivery app: discover restaurants, open a menu, filter by veg / non-veg, add dishes to a cart and head to checkout.
+
+Restaurant listings and menus are fetched **live** from Swiggy's public web endpoints (through a CORS proxy), so the app works with real-world, deeply nested API data rather than hand-made mock JSON.
+
+> ⚠️ **Disclaimer:** This is an educational / portfolio project. It is **not affiliated with, endorsed by, or connected to Swiggy**. All brand names, logos and data belong to their respective owners.
 
 ---
 
 ## ✨ Features
 
-### 🏠 Home Page
-
-* Clean Swiggy-inspired landing page
-* Food category browsing
-* Restaurant discovery
-* Multiple food sections
-* Dynamic content rendering
-* Responsive layout
+### 🏠 Home
+- Landing page with hero header and quick-access banners (Food, Instamart, Dineout, Genie)
+- **"What's on your mind"** food category grid
+- **Instamart grocery** categories in a horizontally scrolling row
+- **Dineout** restaurant carousel with images, ratings and offers
 
 ### 🍽️ Restaurant Discovery
+- Live list of restaurants (Delhi) fetched from the API
+- Cards showing image, rating, delivery time and cuisines
+- Shimmer loading skeleton while data loads
 
-* Browse restaurants
-* Restaurant cards with ratings and information
-* Restaurant-specific pages
-* Menu browsing
-* Food item categorization
-* Restaurant information section
+### 📋 Restaurant Menu
+- Dynamic menu page per restaurant (`/city/delhi/:id`)
+- Handles **nested categories** with recursive rendering
+- **Collapsible** menu sections
+- **Veg / Non-veg filter** toggle
+- Dish cards with price, rating, description and image
 
-### 🔎 Food Search
-
-* Search food items
-* Search-based food filtering
-* Dedicated search interface
-* Dynamic rendering of matching food items
-
-### 🍕 Food Menu
-
-* Restaurant-specific menus
-* Reusable food cards
-* Food item details
-* Category-based menu sections
-* Add items directly to cart
-
-### 🛒 Shopping Cart
-
-* Add food items to cart
-* Remove items from cart
-* Centralized cart state
-* Dynamic cart updates
-* Cart item management
-* Checkout flow
+### 🛒 Cart (Redux Toolkit)
+- **ADD** button turns into a `- qty +` stepper
+- Increment / decrement quantity, and the item is removed when quantity reaches zero
+- Live cart count in the header
+- Cart state shared across all pages
 
 ### 💳 Checkout
-
-* Dedicated checkout page
-* Order summary
-* Cart-based pricing
-* Simple checkout experience
-
-### 🛍️ Grocery
-
-* Dedicated grocery section
-* Grocery categories
-* Reusable grocery cards
-* Grocery item browsing
-
-### 🍴 Dine
-
-* Dedicated dining section
-* Restaurant/dining cards
-* Dining options
-* Reusable components
-
-### ⚡ Loading Experience
-
-* Shimmer/loading UI
-* Better user experience while content is loading
+- Dedicated `/Checkout` route that reads the cart from the Redux store
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology            | Usage                     |
-| --------------------- | ------------------------- |
-| **React.js**          | Frontend UI development   |
-| **JavaScript (ES6+)** | Application logic         |
-| **Redux**             | Global state management   |
-| **Redux Toolkit**     | Cart state management     |
-| **React Router**      | Client-side routing       |
-| **CSS**               | Styling and responsive UI |
-| **Parcel**            | Development & bundling    |
-| **Git & GitHub**      | Version control           |
+| Layer | Technology |
+| --- | --- |
+| **UI Library** | React 19 |
+| **State Management** | Redux Toolkit, React-Redux |
+| **Routing** | React Router 7 (nested routes + `Outlet`) |
+| **Styling** | Tailwind CSS 4 (via PostCSS) |
+| **Icons** | Lucide React |
+| **Bundler / Dev Server** | Parcel 2 |
+| **Data** | Swiggy public web API + static JSON modules |
 
 ---
 
-## 🧠 Key Technical Concepts
+## 📁 Project Structure
 
-This project was built to practice and demonstrate real-world frontend development concepts.
-
-### ⚛️ Component-Based Architecture
-
-The application is divided into small reusable components instead of keeping everything inside a single component.
-
-Examples:
-
-```text
-FoodCard
-RestaurantCard
-GroceryCard
-DineCard
-MenuCard
-Header
-Checkout
-SearchFood
 ```
-
-This makes the application easier to maintain, debug and extend.
-
----
-
-### 🔄 Redux State Management
-
-The shopping cart is managed using Redux.
-
-```text
-User
-  ↓
-Add Food
-  ↓
-Redux Store
-  ↓
-Cart Slice
-  ↓
-Cart UI
-  ↓
-Checkout
-```
-
-Using centralized state management prevents different components from maintaining separate versions of the cart.
-
----
-
-### 🧭 Client-Side Routing
-
-Different sections of the application are handled through routes instead of traditional page reloads.
-
-```text
-Home
- ├── Restaurant
- │    └── Restaurant Menu
- │
- ├── Search
- │
- ├── Grocery
- │
- ├── Dine
- │
- ├── Cart
- │
- └── Checkout
-```
-
----
-
-## 📂 Project Structure
-
-```text
-swiggy-clone/
+QuickBite-Food-Delivery-Platform/
 │
-├── App.js
-├── Header.js
-├── Home.js
-├── SecondaryHome.js
-│
-├── Restaurant.js
-├── RestaurantMenu.js
-├── RestCard.js
-├── RestHeader.js
-├── RestInfo.js
-│
-├── MenuCard.js
-│
-├── FoodCard.js
-├── FoodData.js
-├── FoodOption.js
-│
-├── Grocery.js
-├── GroceryCard.js
-├── GroceryOption.js
-│
-├── DineCard.js
-├── DineData.js
-├── DineOption.js
-│
-├── SearchFood.js
-│
-├── CartSlicer.js
-├── Checkout.js
-├── stores.js
-│
-├── Shimmer.js
-│
-├── index.css
+├── App.js                # Entry point: Provider, Router, routes
 ├── index.html
-├── package.json
-└── package-lock.json
+├── index.css
+├── .postcssrc            # Tailwind PostCSS plugin config
+│
+├── Home.js               # Landing page
+├── Header.js             # Hero header
+├── SecondaryHome.js      # Layout wrapper (RestHeader + Outlet)
+├── RestHeader.js         # Top bar with live cart count
+│
+├── Restaurant.js         # Restaurant listing (API)
+├── RestCard.js           # Restaurant card
+├── RestaurantMenu.js     # Menu page (API) + veg / non-veg filter
+├── MenuCard.js           # Recursive menu category renderer
+├── RestInfo.js           # Dish card with ADD / + / - controls
+├── SearchFood.js         # Dish search page
+│
+├── FoodOption.js · FoodCard.js · FoodData.js         # Food category grid
+├── GroceryOption.js · GroceryCard.js · Grocery.js    # Grocery categories
+├── DineOption.js · DineCard.js · DineData.js         # Dineout carousel
+│
+├── CartSlicer.js         # Redux cart slice
+├── stores.js             # Redux store
+├── Checkout.js           # Checkout page
+└── Shimmer.js            # Loading skeleton
 ```
 
 ---
 
-## 🔥 Application Flow
+## 🏗️ Architecture
 
-```text
-                    ┌───────────────┐
-                    │   Home Page   │
-                    └───────┬───────┘
-                            │
-            ┌───────────────┼────────────────┐
-            ↓               ↓                ↓
-      Restaurants        Search           Grocery
-            │               │                │
-            ↓               ↓                ↓
-      Restaurant        Food Results     Grocery Items
-         Menu                │
-            │                │
-            └────────┬───────┘
-                     ↓
-                Add To Cart
-                     │
-                     ↓
-              ┌─────────────┐
-              │ Redux Store │
-              └──────┬──────┘
-                     ↓
-                   Cart
-                     │
-                     ↓
-                 Checkout
+### Component & Route Tree
+
+```mermaid
+flowchart TD
+    APP["App.js<br/>Redux Provider + BrowserRouter"]
+
+    APP --> HOME["/ → Home"]
+    APP --> SEC["SecondaryHome<br/>RestHeader + Outlet"]
+    APP --> CHK["/Checkout → Checkout"]
+
+    HOME --> HDR[Header]
+    HOME --> FO["FoodOption → FoodCard"]
+    HOME --> GO["GroceryOption → GroceryCard"]
+    HOME --> DO["DineOption → DineCard"]
+
+    SEC --> REST["/restaurant → Restaurant"]
+    SEC --> MENU["/city/delhi/:id → RestaurantMenu"]
+    SEC --> SRCH["/city/delhi/:id/search → SearchFood"]
+
+    REST --> RC[RestCard]
+    MENU --> MC["MenuCard (recursive)"]
+    MC --> RI["RestInfo<br/>ADD / + / -"]
 ```
 
----
+### Data Flow
 
-## 🧩 Reusable Components
+```mermaid
+flowchart LR
+    subgraph Browser["React App (Parcel)"]
+        UI["Restaurant / RestaurantMenu<br/>components"]
+        STORE[("Redux Store<br/>cartslice")]
+        STATIC["Static JSON<br/>FoodData, Grocery, DineData"]
+    end
 
-One of the main goals of this project was to avoid duplicating UI logic.
+    PROXY["CORS Proxy<br/>cors-anywhere"]
+    API["Swiggy Public API<br/>restaurants list + menu"]
 
-For example, food items are rendered using reusable components:
-
-```text
-FoodCard
-   ↓
-Food Data
-   ↓
-Reusable Food UI
+    UI -- "fetch(proxy + url)" --> PROXY --> API
+    API -- "JSON" --> UI
+    STATIC --> UI
+    UI -- "dispatch(addItems / Increment / Decrement)" --> STORE
+    STORE -- "useSelector (items, count)" --> UI
 ```
 
-Similarly:
+### Cart State Machine
 
-```text
-Restaurant Data
-      ↓
-   RestCard
-      ↓
-Restaurant Listing
+```mermaid
+stateDiagram-v2
+    [*] --> NotInCart
+    NotInCart --> Qty1: addItems
+    Qty1 --> QtyN: IncrementItems
+    QtyN --> QtyN: IncrementItems
+    QtyN --> Qty1: DecrementItems (qty = 2)
+    QtyN --> QtyN: DecrementItems (qty > 2)
+    Qty1 --> NotInCart: DecrementItems (item removed)
 ```
 
-and:
+### Key Design Decisions
 
-```text
-Grocery Data
-      ↓
- GroceryCard
-      ↓
-Grocery Listing
-```
-
-This component-driven approach makes it easier to add new features without rewriting existing UI.
-
----
-
-## 🛒 Cart Architecture
-
-The cart uses Redux for centralized state management.
-
-```text
-Component
-    ↓
-Dispatch Action
-    ↓
-Cart Slice
-    ↓
-Redux Store
-    ↓
-Updated Cart State
-    ↓
-Cart Component
-```
-
-This allows the cart state to remain consistent across different parts of the application.
-
----
-
-## 🔍 Search Architecture
-
-The search functionality provides a dedicated interface for finding food items.
-
-```text
-Search Input
-     ↓
-User Query
-     ↓
-Food Data
-     ↓
-Filter / Match
-     ↓
-Matching Food Cards
-```
-
-This creates a simple and intuitive food discovery experience.
-
----
-
-## 📱 Responsive UI
-
-The interface is designed with responsive layouts so that the application can adapt to different screen sizes.
-
-The styling focuses on:
-
-* Flexible layouts
-* Responsive cards
-* Mobile-friendly navigation
-* Consistent spacing
-* Reusable UI patterns
-
----
-
-## ⚡ Performance & UX
-
-The application uses a few techniques to provide a smoother user experience:
-
-* Component-based rendering
-* Reusable UI components
-* Redux for predictable state updates
-* Shimmer loading UI
-* Client-side navigation
-* Structured data modules
-
----
-
-## 🧪 Main Functional Areas
-
-| Module         | Functionality               |
-| -------------- | --------------------------- |
-| 🏠 Home        | Food & restaurant discovery |
-| 🍽️ Restaurant | Restaurant browsing         |
-| 📋 Menu        | Restaurant menu             |
-| 🔎 Search      | Search food items           |
-| 🛒 Cart        | Manage selected items       |
-| 💳 Checkout    | Order summary & checkout    |
-| 🛍️ Grocery    | Grocery browsing            |
-| 🍴 Dine        | Dining discovery            |
-
----
-
-## 🏗️ What I Learned
-
-Building this project helped me strengthen my understanding of:
-
-* React component architecture
-* Props and state
-* React Hooks
-* Redux & Redux Toolkit
-* Global state management
-* React Router
-* Dynamic rendering
-* Reusable components
-* Search/filter functionality
-* Cart management
-* Responsive CSS
-* Project structuring
-* Git & GitHub workflow
-
----
-
-## 🔮 Future Improvements
-
-The project can be extended with:
-
-* 🔐 User authentication
-* 👤 User profiles
-* 📍 Location-based restaurant discovery
-* 💳 Real payment integration
-* 📦 Order tracking
-* ❤️ Wishlist functionality
-* ⭐ Restaurant reviews & ratings
-* 🔔 Order notifications
-* 🗄️ Backend integration
-* 🛢️ Database integration
-* 📱 Progressive Web App support
+- **Recursive rendering**: `MenuCard` renders itself for nested categories, so any menu depth from the API is handled.
+- **Centralized cart**: one Redux slice (`items[]` + `count`) keeps the header counter, dish cards and checkout always in sync.
+- **Layout routes**: `SecondaryHome` uses React Router's `Outlet` so all inner pages share one header.
+- **Defensive data access**: optional chaining throughout to survive the API's deeply nested and changing response shape.
+- **Hybrid data**: live API for restaurants and menus, static JSON modules for home-page sections.
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Clone the repository
+### Prerequisites
+- [Node.js](https://nodejs.org/) v18 or higher
+- npm
+
+### Installation
 
 ```bash
-git clone https://github.com/naveenpachahara/swiggy-clone.git
-```
+# 1. Clone the repository
+git clone https://github.com/naveenpachahara/QuickBite-Food-Delivery-Platform.git
 
-### 2. Navigate to the project
+# 2. Go into the project folder
+cd QuickBite-Food-Delivery-Platform
 
-```bash
-cd swiggy-clone
-```
-
-### 3. Install dependencies
-
-```bash
+# 3. Install dependencies
 npm install
-```
 
-### 4. Start the development server
-
-```bash
+# 4. Start the dev server
 npm start
 ```
 
-Then open the local URL shown in your terminal.
+Parcel will print a local URL (by default **http://localhost:1234**).
+
+### 🔓 Enabling live restaurant data
+
+The app calls the API through the public `cors-anywhere` proxy, which requires a one-time manual opt-in:
+
+1. Open **https://cors-anywhere.herokuapp.com/corsdemo**
+2. Click **"Request temporary access to the demo server"**
+3. Reload the app
+
+Without this step, the Restaurant and Menu pages will stay on the loading shimmer.
+
+### Production build
+
+```bash
+npm run build
+```
+
+The output is generated in the `dist/` folder.
 
 ---
 
-## 📌 Project Highlights
+## 🧭 Routes
 
-> A frontend-focused food delivery application demonstrating practical usage of **React.js, Redux, routing, reusable components, dynamic rendering, search, cart management, and checkout flow**.
-
-### ⭐ Key Highlights
-
-* ⚛️ React-based architecture
-* 🔄 Redux-powered cart
-* 🧩 Highly reusable components
-* 🧭 Client-side routing
-* 🔎 Food search
-* 🍽️ Restaurant & menu browsing
-* 🛒 Cart management
-* 💳 Checkout flow
-* 🛍️ Grocery section
-* 🍴 Dine section
-* ⚡ Shimmer loading UI
-* 📱 Responsive design
+| Route | Page |
+| --- | --- |
+| `/` | Home (food, grocery and dineout sections) |
+| `/restaurant` | Restaurant listing |
+| `/city/delhi/:id` | Restaurant menu |
+| `/city/delhi/:id/search` | Search dishes in a restaurant |
+| `/Checkout` | Cart / checkout |
 
 ---
 
-## 👨‍💻 Author
+## 🧰 NPM Scripts
 
-### Naveen Pachahara
-
-**B.Tech Computer Science Engineering**
-
-Interested in:
-
-* Full Stack Development
-* MERN Stack
-* Frontend Development
-* Software Engineering
-* Data Structures & Algorithms
-
-### 🔗 Connect With Me
-
-**GitHub:**
-https://github.com/naveenpachahara
-
-**Project:**
-https://github.com/naveenpachahara/swiggy-clone
+| Script | Description |
+| --- | --- |
+| `npm start` | Start Parcel dev server |
+| `npm run build` | Create production build in `dist/` |
 
 ---
 
-## ⭐ Support
+## 🗺️ Roadmap
 
-If you found this project useful or interesting, consider giving the repository a ⭐ on GitHub.
+- [ ] Working dish search and filtering on the search page
+- [ ] Full checkout: item prices, quantity controls, bill total, taxes and delivery fee
+- [ ] Persist cart in `localStorage`
+- [ ] Replace the public CORS proxy with a small Node/Express backend proxy
+- [ ] Location selector instead of fixed Delhi coordinates
+- [ ] Working search bar on the home page
+- [ ] Rename the `/Checkout` route to lowercase `/checkout`
+- [ ] User authentication and order history
+- [ ] Payment gateway integration
+- [ ] Error states and an empty-cart screen
+- [ ] Deployment (Vercel / Netlify) with a live demo link
 
 ---
 
-### 📄 License
+## 🧠 What I Learned
 
-This project was created for **educational and portfolio purposes**.
+- Structuring a React app into small reusable components
+- Global state with Redux Toolkit (slices, actions, selectors)
+- Nested and layout routes with React Router 7
+- Consuming and safely navigating large, deeply nested API responses
+- Recursive component rendering
+- Handling CORS with a proxy
+- Loading states with shimmer UI
+- Styling with Tailwind CSS 4
+
+---
+
+## 🤝 Contributing
+
+1. Fork the project
+2. Create a branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m "Add amazing feature"`
+4. Push the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+---
+
+## 👤 Author
+
+**Naveen Pachahara**
+B.Tech Computer Science Engineering · Full Stack / MERN Developer
+
+GitHub: [@naveenpachahara](https://github.com/naveenpachahara)
+
+---
+
+<div align="center">
+
+⭐ If you found this project useful, please give it a star!
+
+*Built for learning and portfolio purposes.*
+
+</div>
